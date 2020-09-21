@@ -1,5 +1,3 @@
-/* Copyright 2019 Smart Chain Arena LLC. */
-
 const fs = require('fs');
 
 const args = process.argv.slice(2);
@@ -89,101 +87,6 @@ global.eztz = {
 
 smartml=require(__dirname + '/smartmljs.bc.js');
 
-var mode          = "";
-var compile       = undefined;
-var outputDir     = "";
-var targetStorage = "";
-var targetCode    = "";
-var targetTypes  = "";
-var scenario      = undefined;
-
-for (var i = 0; i < args.length; i++)
-{
-    switch(args[i]) {
-    case "--compile":
-        mode = "compile";
-        break;
-    case "--outputDir":
-        mode = "outputDir";
-        break;
-    case "--targetCode":
-        mode = "targetCode"
-        break;
-    case "--targetStorage":
-        mode = "targetStorage"
-        break;
-    case "--targetTypes":
-        mode = "targetTypes"
-        break;
-    case "--scenario":
-        mode = "scenario"
-        break;
-    default:
-        if (mode == "compile")
-        {
-            compile = args[i];
-        }
-        else if (mode == "outputDir")
-        {
-            outputDir = args[i];
-        }
-        else if (mode == "targetCode")
-        {
-            targetCode = args[i];
-        }
-        else if (mode == "targetStorage")
-        {
-            targetStorage = args[i];
-        }
-        else if (mode == "targetTypes")
-        {
-            targetTypes = args[i];
-        }
-        else if (mode == "scenario")
-        {
-            scenario = args[i];
-        }
-        else
-        {
-            throw "Bad command line. " + args[i];
-        }
-    }
-}
-
-function ppToFile(filename, target, value)
-{
-    if (target)
-    {
-        fs.writeFileSync(target, value);
-    }
-    else if (outputDir)
-    {
-        fs.writeFileSync(outputDir + "/" + filename, value);
-    }
-    else{
-        console.log("==== " + filename + " ====");
-        console.log(value);
-    }
-}
-
-if (compile != undefined)
-{
-  const s_expr = fs.readFileSync(args[1], 'utf8');
-  // console.log(s)
-  try {
-    const contract = smartml.importContract(s_expr);
-    ppToFile("contractStorage.tz", targetStorage, smartml.compileContractStorage(contract));
-    ppToFile("contractTypes.tz", targetTypes, smartml.ppContractTypes(contract));
-    const compiledContract = smartml.compileContract(contract);
-    ppToFile("contractCode.tz", targetCode, smartml.compiledContract_to_michelson(compiledContract));
-    ppToFile("contractCode.tz.json", targetCode ? (targetCode + ".json") : targetCode, smartml.compiledContract_to_micheline(compiledContract));
-  }
-  catch(exn) {
-    console.error("Exception while handling " + args[1])
-    console.error(smartml.stringOfException(false, exn));
-    process.exit(1)
-  }
-}
 
 function myFunc(){
   const s_expr = fs.readFileSync('myDemo.py.smlse', 'utf8');
@@ -210,21 +113,6 @@ function myFunc(){
 
 myFunc()
 
-if (scenario != undefined)
-{
-  const s = smartml.runScenario(scenario, outputDir)
-  if (s != '') {
-    try {
-      const chalk = require('chalk');
-      console.error("Exception while handling " + chalk.red(args[1] + "\n" + s))
-      process.exit(1)
-    }
-    catch(exn) {
-      console.error("Exception while handling " + args[1] + "\n" + s)
-      process.exit(1)
-    }
-  }
-}
 }
 
 )()
