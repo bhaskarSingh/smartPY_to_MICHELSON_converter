@@ -89,8 +89,8 @@ smartml=require(__dirname + '/smartmljs.bc.js');
 
 
 function myFunc(){
-  const s_expr = fs.readFileSync('myDemo.py.smlse', 'utf8');
-  console.log(s_expr)
+  const s_expr = fs.readFileSync('Cryptobot.py.smlse', 'utf8');
+  // console.log(s_expr)
   try {
     const contract = smartml.importContract(s_expr);
     // console.log(contract)
