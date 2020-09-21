@@ -39,10 +39,11 @@ def compileContract(contract, targetBaseFilename = None, targetDirectory = None,
 
 if __name__ == "__main__":
 
-
+# Testing SMLSE convertor with a simple demo contract.
     # filename = "demo.py"
     # class_call = "MyContract(50,80)"
 
+# Testing SMLSE converter with a complex contract
     filename = "CryptoBot.py"
     class_call = "Cryptobot(sp.address('tz1aoQSwjDU4pxSwT5AsBiK5Xk15FWgBJoYr'),True)"
 
