@@ -88,7 +88,7 @@ global.eztz = {
 smartml=require(__dirname + '/smartmljs.bc.js');
 
 
-function myFunc(){
+function smlseToMichelsonConverter(){
   const s_expr = fs.readFileSync('Cryptobot.py.smlse', 'utf8');
   // console.log(s_expr)
   try {
@@ -97,12 +97,6 @@ function myFunc(){
     const compiledContract = smartml.compileContract(contract);
     const michelsonCode = smartml.compiledContract_to_michelson(compiledContract);
     console.log(michelsonCode);
-    // ppToFile("contractStorage.tz", targetStorage, smartml.compileContractStorage(contract));
-    // ppToFile("contractTypes.tz", targetTypes, smartml.ppContractTypes(contract));
-    // const compiledContract = smartml.compileContract(contract);
-    // ppToFile("contractCode.tz", targetCode, smartml.compiledContract_to_michelson(compiledContract));
-    // ppToFile("contractCode.tz.json", targetCode ? (targetCode + ".json") : targetCode, smartml.compiledContract_to_micheline(compiledContract));
-
   }
   catch(exn) {
     console.error("Exception while handling " + args[1])
@@ -111,7 +105,7 @@ function myFunc(){
   }
 }
 
-myFunc()
+smlseToMichelsonConverter()
 
 }
 
