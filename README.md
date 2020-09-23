@@ -28,9 +28,11 @@ flags())
 * In order to get the Michelson code, we need to pass SMLSE of the particular contract as input.
 
 * Go to smartmlbasics.js
-* Change file name in the smlseToMichelsonConverter function
+* Update the File Path to the desired SMLSE expression file
 
 ```
+var file_Path = './smlse_expr_files/CryptoBot.py.smlse'
+
 function smlseToMichelsonConverter(){
   const s_expr = fs.readFileSync('Cryptobot.py.smlse', 'utf8');
   // console.log(s_expr)
