@@ -88,6 +88,7 @@ global.eztz = {
 smartml=require(__dirname + '/smartmljs.bc.js');
 
 var file_Path = './smlse_expr_files/CryptoBot.py.smlse'
+
 function smlseToMichelsonConverter(){
   const s_expr = fs.readFileSync(file_Path, 'utf8');
   // console.log(s_expr)
