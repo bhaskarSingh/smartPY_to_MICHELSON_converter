@@ -14,7 +14,7 @@
 </head>
 <body onLoad="brython()">
 	<div class="container" style="margin-top: 30px">
-		<label> Enter SmartPY Code here:</label>
+		<label> Enter SmartPYY Code here:</label>
 		<textarea id='inputCode' rows="10" cols="40" placeholder="Write the Contract"></textarea>
 		<button id="add">Get SMLSE</button>
 
@@ -22,11 +22,13 @@
 	</div>
 
 	<script type="text/python" id="script1">
-		from browser import document,window,html,console
-		import "../changeCase"
+		from browser import document,html,console
+		import converter
 		def getCode(e):
 			c = document['inputCode'].value
-			code = changeCase.upCase(c)
+			code = converter.convert(c)
+    
+
 			document['result'].textContent = code
 			
 
